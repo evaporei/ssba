@@ -14,6 +14,8 @@ c. execute = run the instruction (eg: pass it to ALU)
 
 ## 2. Registers
 
+32-bit computers can index up to 4GBs of RAM. That's because each register has the size of 32 bits, aka 4 bytes, aka 2^32, aka 4 billion numbers/addresses, that could represent a byte in computer RAM.
+
 ## 3. Memory access and caches
 
 ## Further Resources
