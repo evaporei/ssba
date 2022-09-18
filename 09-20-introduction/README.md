@@ -18,6 +18,10 @@ c. execute = run the instruction (eg: pass it to ALU)
 
 ## 3. Memory access and caches
 
+In Skylake's architecture, it can take up to 42 CPU cycles (+ 51 ns) to get something from RAM! Some other architectures get up to 240 CPU cycles.
+
+- [x] https://www.7-cpu.com/cpu/Skylake.html
+
 ## Further Resources
 
 - [x] Fetch Decode Execute Cycle in more detail: https://www.youtube.com/watch?v=jFDMZpkUWCw
