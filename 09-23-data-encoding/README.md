@@ -35,3 +35,15 @@ echo -n `xxd -p hellohex` | wc -c # fish `` -> ()
 0x6f = 6 * 16 + 16 = 111 = o = 0b0110 0b1111
 
 https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm
+
+## 2.1 Basic conversion
+
+4 = 0b100 = 0x04
+65 = 0b1000001 = 0x41
+105 = 0b1101001 = 0x69
+255 = 0b11111111 = 0xff
+
+10 = 2 = 0x02
+11 = 3 = 0x03
+1101100 = 108 = 0x6c
+1010101 = 85 = 0x55
