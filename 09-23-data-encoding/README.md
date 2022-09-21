@@ -47,3 +47,12 @@ https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm
 11 = 3 = 0x03
 1101100 = 108 = 0x6c
 1010101 = 85 = 0x55
+
+## 2.2 Unsigned binary addition
+
+ 11111111
++00001101
+---------
+100001100
+
+12 left over if overflow
