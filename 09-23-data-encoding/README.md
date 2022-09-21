@@ -15,3 +15,23 @@
 256 * 256 * 256 = 16.777.216 colors
 
 fun website :) https://yizzle.com/whatthehex/
+
+```
+echo -n -e '\xdc\xd2\xbf\x8d\x70\x0f\x07\x51\x31\x92\x3e\x34\x7c\x35\xb8\x6f\x38' > hellohex
+
+echo -n `xxd -p hellohex` | wc -c # fish `` -> ()
+```
+
+17 bytes = 34 hexadecimal characters
+
+68656c6c6f = `hello`
+
+6 * 16 = 96
+
+0x68 = 6 * 16 + 08 = 104 = h = 0b0110 0b1000
+0x65 = 6 * 16 + 05 = 101 = e = 0b0110 0b0101
+0x6c = 6 * 16 + 12 = 108 = l = 0b0110 0b1100
+0x6c = 6 * 16 + 13 = 108 = l = 0b0110 0b1100
+0x6f = 6 * 16 + 16 = 111 = o = 0b0110 0b1111
+
+https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm
