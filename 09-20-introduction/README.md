@@ -28,3 +28,13 @@ In Skylake's architecture, it can take up to 42 CPU cycles (+ 51 ns) to get some
 - [ ] Richard Feymann lecture: https://www.youtube.com/watch?v=EKWGGDXe5MA
 - [ ] Computer Science 61C - 2015-01-20: https://archive.org/details/ucberkeley_webcast_gJJeUFyuvvg (55:51 onwards)
 - [x] Casey (Molly Rocket): "Simple Code" Follow-up Part 1: A (Very) Simplified CPU Diagram https://www.youtube.com/watch?v=8VakkEFOiJc
+
+## Notes
+
+Main points learned:
+
+- `mov` instruction is turing complete https://github.com/xoreaxeaxeax/movfuscator
+- x86 has compact instruction encoding (eg: one instruction could take 2, 3, 1 byte[s])
+- arm has fixed size instruction encoding (because it's more modern and computers have more space I guess)
+- OS somehow copies register state right after pausing each process/program, so it can: debug (eg gdb/lldb) + context switch
+- `rax` vs `eax`, one is the full thing, not sure which. Fun fact `e` stands for `extended` https://keleshev.com/eax-x86-register-meaning-and-history/
