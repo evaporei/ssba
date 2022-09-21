@@ -77,3 +77,11 @@ https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm
 
 0b1000 0011 = 0b0111 1101 = -125
 0b1100 0100 = 0b0011 1100 = -60
+
+## 2.4 Addition of two’s complement signed integers
+
+-4 -> flip all bits + 1
++4 -> -1 + flip all bits
+
+8-bit -> -128
+32-bit -> -2,147,483,648 (2^n-1)
