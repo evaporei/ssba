@@ -85,3 +85,22 @@ https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm
 
 8-bit -> -128
 32-bit -> -2,147,483,648 (2^n-1)
+
+## 3 Byte ordering
+
+123 in decimal could be 321, it's just a convention/agreement
+
+123 = big-endian
+321 = little-endian
+
+256
+0b0001 0000 = big-endian
+0b0000 0001 = little-endian
+
+## 3.1 It’s over 9000!
+
+0010 0011 0010 1001
+0x23 0x29
+35 41
+
+big-endian
