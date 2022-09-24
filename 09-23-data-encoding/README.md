@@ -104,3 +104,18 @@ https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm
 35 41
 
 big-endian
+
+## 3.2 TCP
+
+is big-endian, like most network protocols
+
+not specified in header, to save space and simplify parsing
+
+`tcpheader` file
+
+- sequence number: 0100 0100 0001 1110 0111 0011 0110 1000
+- acknowledge number: 11101111 11110010 10100000 00000010
+- source port: 1010 1111 0000 0000
+- destination port: 1011 1100 0000 0110
+
+size: 0b1000 = 8 x 32-bit words = 256 bytes?
