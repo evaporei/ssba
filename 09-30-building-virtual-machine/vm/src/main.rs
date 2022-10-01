@@ -9,9 +9,8 @@ fn compute(memory: &mut Memory) {
         let (pc_inc, instruction_address) = fetch(registers[0] as usize, memory);
         registers[0] += pc_inc as u8;
 
-        let op = decode(dbg!(instruction_address), &memory);
+        let op = decode(instruction_address, &memory);
 
-        dbg!(&op);
         if let Op::Halt = op {
             break;
         }
@@ -21,7 +20,7 @@ fn compute(memory: &mut Memory) {
 }
 
 fn fetch(pc: usize, memory: &Memory) -> (u8, Vec<u8>) {
-    match dbg!(memory[dbg!(pc)]) {
+    match memory[pc] {
         0x01..=0x04 => (3, memory[pc..pc + 3].into()),
         0xff => (1, vec![memory[pc]]),
         _ => panic!("can't know size to fetch unknown instruction"),
@@ -31,7 +30,6 @@ fn fetch(pc: usize, memory: &Memory) -> (u8, Vec<u8>) {
 fn decode(instruction: Vec<u8>, memory: &Memory) -> Op {
     match instruction[..] {
         [0x01, reg, addr] => {
-            // dbg!(&memory[dbg!(addr) as usize..dbg!(addr as usize + 2)]);
             let value = u16::from_le_bytes(memory[addr as usize..addr as usize + 2].try_into().unwrap());
             Op::Load(reg, value)
         },
@@ -56,21 +54,20 @@ impl Op {
     fn execute(self, registers: &mut Registers, memory: &mut Memory) {
         match self {
             Op::Load(reg, value) => {
-                registers[reg as usize] = dbg!(value) as u8;
+                registers[reg as usize] = value as u8;
             }
             Op::Store(reg, addr) => {
                 memory[addr as usize] = registers[reg as usize];
             }
             Op::Add(reg1, reg2) => {
-                dbg!(&registers);
-                let r1 = registers[dbg!(reg1) as usize];
-                let r2 = registers[dbg!(reg2) as usize];
+                let r1 = registers[reg1 as usize];
+                let r2 = registers[reg2 as usize];
                 let sum = r1.wrapping_add(r2);
                 registers[reg1 as usize] = sum;
             }
             Op::Sub(reg1, reg2) => {
-                let r1 = registers[dbg!(reg1) as usize];
-                let r2 = registers[dbg!(reg2) as usize];
+                let r1 = registers[reg1 as usize];
+                let r2 = registers[reg2 as usize];
                 let sub = r1.wrapping_sub(r2);
                 registers[reg1 as usize] = sub;
             }
@@ -98,7 +95,6 @@ fn main() {
     compute(&mut memory);
     println!("Testing 255 + 3 = 258");
     assert_eq!(memory[0x0e], 2);
-    dbg!(memory);
     assert_eq!(memory[0x0f], 1);
 
     // 256 - 3 = 253
