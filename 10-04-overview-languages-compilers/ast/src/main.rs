@@ -57,6 +57,42 @@ fn main() {
             },
             7,
         ),
+        (
+            Expr::BinOp {
+                left: Box::new(Expr::Const(1)),
+                op: Op::Add,
+                right: Box::new(Expr::BinOp {
+                    left: Box::new(Expr::Const(2)),
+                    op: Op::Mul,
+                    right: Box::new(Expr::BinOp {
+                        left: Box::new(Expr::Const(3)),
+                        op: Op::Sub,
+                        right: Box::new(Expr::Const(4)),
+                    }),
+                }),
+            },
+            -1,
+        ),
+        (
+            Expr::BinOp {
+                left: Box::new(Expr::BinOp {
+                    left: Box::new(Expr::Const(1)),
+                    op: Op::Add,
+                    right: Box::new(Expr::BinOp {
+                        left: Box::new(Expr::BinOp {
+                            left: Box::new(Expr::Const(2)),
+                            op: Op::Sub,
+                            right: Box::new(Expr::Const(3)),
+                        }),
+                        op: Op::Mul,
+                        right: Box::new(Expr::Const(4)),
+                    }),
+                }),
+                op: Op::Add,
+                right: Box::new(Expr::Const(5)),
+            },
+            2,
+        ),
     ];
     // assert_eq!(
     //     parse("1 + 1"),
