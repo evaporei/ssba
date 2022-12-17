@@ -16,6 +16,7 @@ pub enum Expr {
         right: Box<Expr>,
     },
     Const(isize),
+    Var(String),
 }
 
 #[allow(unused)]
@@ -23,31 +24,40 @@ fn parse(code: &str) -> Expr {
     todo!()
 }
 
-pub fn eval(expr: Expr) -> isize {
+pub fn eval(expr: Expr, ctx: &Context) -> isize {
     match expr {
         Expr::BinOp { left, op, right } => match op {
-            Op::Add => eval(*left) + eval(*right),
-            Op::Sub => eval(*left) - eval(*right),
-            Op::Mul => eval(*left) * eval(*right),
-            Op::Div => eval(*left) / eval(*right),
+            Op::Add => eval(*left, ctx) + eval(*right, ctx),
+            Op::Sub => eval(*left, ctx) - eval(*right, ctx),
+            Op::Mul => eval(*left, ctx) * eval(*right, ctx),
+            Op::Div => eval(*left, ctx) / eval(*right, ctx),
         },
         Expr::Const(v) => v,
+        Expr::Var(name) => ctx[&name],
     }
 }
 
 pub fn optimize(expr: Expr) -> Expr {
     match expr {
         Expr::BinOp { left, op, right } => match (*left.clone(), *right.clone()) {
-            (Expr::Const(l), Expr::Const(r)) => Expr::Const(eval(Expr::BinOp {
-                left: Box::new(Expr::Const(l)),
-                op,
-                right: Box::new(Expr::Const(r)),
-            })),
+            (Expr::Const(l), Expr::Const(r)) => Expr::Const(eval(
+                Expr::BinOp {
+                    left: Box::new(Expr::Const(l)),
+                    op,
+                    right: Box::new(Expr::Const(r)),
+                },
+                &Context::new(),
+            )),
             _ => Expr::BinOp { left, op, right },
         },
         Expr::Const(v) => Expr::Const(v),
+        Expr::Var(_name) => Expr::Const(123),
     }
 }
+
+use std::collections::HashMap;
+
+type Context = HashMap<String, isize>;
 
 #[test]
 fn test_eval() {
@@ -109,8 +119,10 @@ fn test_eval() {
             2,
         ),
     ];
+    let ctx = Context::new();
+
     for (expr, result) in test_cases {
-        assert_eq!(eval(expr), result);
+        assert_eq!(eval(expr, &ctx), result);
     }
 }
 
